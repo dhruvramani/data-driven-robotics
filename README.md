@@ -1,15 +1,12 @@
-# Language-Based Robotics
+# A Boilerplate For Data Driven Robotics
+& a Pytorch implementation of [Learning Latent Plans from Play](https://learning-from-play.github.io/).
 
-+ TODO's 
-    - Save GPU memory by not creating additional variables
-    - Make it very accurate on while working with pixels. Just have to change PerceptionModule.
-    - check for syntax errors
-    - Code datatset_env & collect_demons for Furniture env
-    - edit fs.py to include code to unarchive when get traj is called
-    - edit store_trajectoy to crop trajectory using w_low, w_high
-+ IDEAs 
-    - Given a collection of play-data and their currosponding instructions, generate more instructions using some NLP model so as to train our robot in a better way?
-    - Like using BC for generating more play-data : but for instructions
+This repo is supposed to provide organized & scalable experimentation of data-driven robotics learning. You can adapt it to your own model and environment with minor modifications.
 
-+ QUESTIONs
-    - Store RGB obvs or just robot dynamics and then while training force env to that state and get RBG obv. Former seems better.
+## Organization
+### Modules
+This setup consists of a databse (`db/`) inspired from [[1]](https://arxiv.org/abs/1909.12200) storing meta-data of the trajectories collected and a light web-app which renders a video of the trajectory. The DEG module (`dataset_env/`) provide easy adaption to various environments, provide dataloaders, (`deg_base.py`), easy functionality to interact with the DB and store/retrieve trajectories (`file_storage.py`) - all bundled up. The current implementation includes support for [RLBench](https://github.com/stepjam/RLBench/) and (older)[Robosuite](https://github.com/ARISE-Initiative/robosuite) environments. The collection module (`collect_demons/`) provides data-collection mechanisms such as teleoperation and imitation policies. Every new model can have it's on directory and the current `model/` contains a Pytorch implementation of [LfP](https://learning-from-play.github.io/). The training and testing code is defined in `model/` too.
+
+Additional information about each module is provided in their respective READMEs.
+### Configs
+Config common to all the modules is defined in `global_config.py`. Each of the other modules have their own config files (`*_config.py`) which add to the global config. The config system is designed to automatically change on minor edits (eg. a change in `env` changes all the paths and other env-related properties).
