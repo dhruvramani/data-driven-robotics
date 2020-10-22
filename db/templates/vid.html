@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title %} Trajectory Video {% endblock title %}
+{% block content %}
+
+    <div class='columns'>
+        <div class="column">
+            <figure class="image is-16by9">
+                <video class="has-ratio" width="512" height="288" controls>
+                    <source src="{% static 'media/vid.mp4' %}" type="video/mp4">
+                </video>
+            </figure>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-4">
+            <img src="{% static 'media/inital.png' %}" class="image is-16by9">
+            <p>Initial State</p>
+        </div>
+        <div class="column is-4"></div>
+        <div class="column is-4">
+            <img src="{% static 'media/goal.png' %}" class="image is-16by9">
+            <p>Final State</p>
+        </div>
+    </div>
+
+{% endblock content %}
