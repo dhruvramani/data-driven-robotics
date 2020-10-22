@@ -15,3 +15,6 @@ The `traj_db` app provides the database to store the meta-data of the trajectori
 
 ## Adding New Environments/Tables
 To add a table for a new environment, create a new, empty subclass of `Trajectory` and register it in `traj_db/admin.py`. That's it! Follow `../dataset_env`'s README for other config-modifications. 
+
+## Views
+The `admin/` portal provides a good interface to the database, but usage of functions in `../dataset_env/file_storage.py` is recommended. The index page generates a video of a random trajectory of the current environment and displays it. 
