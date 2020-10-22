@@ -1,7 +1,7 @@
 ## Django Based Database for Trajectory Meta-data. 
 
 ## Setup 
-To run the usual commands on `manage.py`, run `python3 manage.py` and enter commands when prompted. I Had to edit `manage.py` out due to errors with argv and the global config. For running `runserver`, type the command twice (as prompted).
+To run the usual commands on `manage.py`, run `python3 manage.py` and enter commands when prompted. I had to edit `manage.py` out due to errors with argv and the global config. For running `runserver`, type the command twice (as prompted).
 
 Run the commands in order to setup the DB from scratch. 
 ```
