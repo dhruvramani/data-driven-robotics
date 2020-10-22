@@ -1,27 +1,17 @@
-## TODO 
+## Django Based Database for Trajectory Meta-data. 
 
-To run the usual commands on manage.py, run `python3 manage.py` and enter command when prompted. Had to edit it out (see `manage.py`) due to errors with argv and configs. For running `runserver`, type the command twice (as prompted).
+## Setup 
+To run the usual commands on `manage.py`, run `python3 manage.py` and enter commands when prompted. I Had to edit `manage.py` out due to errors with argv and the global config. For running `runserver`, type the command twice (as prompted).
 
-Commands to run when setting up from scratch.
+Run the commands in order to setup the DB from scratch. 
 ```
+createsuperuser
 makemigrations
 migrate
-createsuperuser
-python manage.py syncdb
-
 ```
-- I think tested, works fine. Just edit the front end ig.
-+ Each env has it's own seperate table to store data.
-+ 2 Apps :
-  - `traj_db` : Contains the main meta-data DB to store the trajectories. Stores the language/instruction schema too.
-  - `hindsight_instruction` : Web-App to play trajectories and store instructions.
 
-+ Might migrate to Postgres in the future. Need sqllite-3 for speed now.
-  - https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04
-  - https://www.vphventures.com/how-to-migrate-your-django-project-from-sqlite-to-postgresql/
+## Database
+The `traj_db` app provides the database to store the meta-data of the trajectories. The `Trajectory` table is an abstract-table. Each environment gets its own table just by inheriting it (see `traj_db/models.py`). Each trajectory is stored as a pickle file and is represented by UUID. The table includes other information such as the task it's performing, how it was generated etc. All the functionalities to interact with the pickle files and the DB is provided in `../dataset_env/file_storage.py`.
 
-+ To run on Google Colabs
-  - https://ngrok.com/
-  - https://medium.com/@kshitijvijay271199/flask-on-google-colab-f6525986797b
-  - https://stackoverflow.com/questions/59741453/is-there-a-general-way-to-run-web-applications-on-google-colab
-  
+## Adding New Environments/Tables
+To add a table for a new environment, create a new, empty subclass of `Trajectory` and register it in `traj_db/admin.py`. That's it! Follow `../dataset_env`'s README for other config-modifications. 
