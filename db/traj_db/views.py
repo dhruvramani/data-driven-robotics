@@ -14,5 +14,4 @@ def vid(request):
     trajectory, episode_id, task_id = file_storage.get_random_trajectory()
     vid_path = file_storage.create_video(trajectory)
     assert os.path.isfile(vid_path)
-
     return render(request, 'vid.html', {})
