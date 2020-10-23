@@ -28,8 +28,6 @@ class DataEnvGroup(object):
         # Set these after inheriting the class. NotImplementedError
         self.vis_obv_key = None
         self.dof_obv_key = None
-        self.word_embeddings_key = 'word_embeddings'
-        self.sentence_embedding_key = 'sentence_embedding'
 
         self.obs_space = None
         self.action_space = None
